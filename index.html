@@ -27,15 +27,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC
 .card{background:var(--card);border-radius:var(--radius);cursor:pointer;transition:transform .15s;position:relative;padding-left:5px;box-shadow:var(--shadow)}
 .card:active{transform:scale(.96)}
 .card-badge{position:absolute;left:0;top:0;bottom:0;width:5px;border-radius:var(--radius) 0 0 var(--radius)}
-.card.cold .card-badge{background:var(--cold)}.card.cool .card-badge{background:var(--cool)}
-.card.neutral .card-badge{background:var(--neutral)}.card.warm .card-badge{background:var(--warm)}.card.hot .card-badge{background:var(--hot)}
 .card-body{padding:10px 10px 8px}
 .card-row{display:flex;align-items:center;gap:6px}
 .card-emoji{font-size:20px;flex-shrink:0}
 .card-name{font-size:13px;font-weight:700;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.card-nature{font-size:10px;font-weight:600;color:#fff;padding:1px 8px;border-radius:10px;flex-shrink:0}
-.card.cold .card-nature{background:var(--cold)}.card.cool .card-nature{background:var(--cool)}
-.card.neutral .card-nature{background:var(--neutral)}.card.warm .card-nature{background:var(--warm)}.card.hot .card-nature{background:var(--hot)}
+.card-nature{font-size:10px;font-weight:600;color:#fff;padding:1px 8px;border-radius:10px;flex-shrink:0;display:inline-block}
 .card-meta{font-size:11px;color:var(--muted);margin-top:3px}
 .card-effect{font-size:11px;color:#64748b;margin-top:3px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .empty{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
@@ -92,7 +88,7 @@ function render(){
   var h='';
   for(var i=0;i<items.length;i++){
     var v=items[i],c=C[v.nature],e=E[v.nature];
-    h+='<div class="card" onclick="show('+v.idx+')"><div class="card-badge"></div><div class="card-body"><div class="card-row"><span class="card-emoji">'+e+'</span><span class="card-name">'+esc(v.name)+'</span><span class="card-nature">'+v.nature+'性</span></div><div class="card-meta">味'+esc(v.taste)+'</div><div class="card-effect">'+esc(v.effect)+'</div></div></div>';
+    h+='<div class="card" onclick="show('+v.idx+')"><div class="card-badge" style="background:'+P[v.nature]+'"></div><div class="card-body"><div class="card-row"><span class="card-emoji">'+e+'</span><span class="card-name">'+esc(v.name)+'</span><span class="card-nature" style="background:'+P[v.nature]+'">'+v.nature+'性</span></div><div class="card-meta">味'+esc(v.taste)+'</div><div class="card-effect">'+esc(v.effect)+'</div></div></div>';
   }
   document.getElementById('list').innerHTML = h||'<div class="empty">😅 未找到匹配的蔬菜</div>';
   tabRender();
