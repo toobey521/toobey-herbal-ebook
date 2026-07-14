@@ -104,7 +104,8 @@ function search(v){q=v.trim();cat='全部';render()}
 function show(i){
   var v=D[i],p=P[v.nature];
   var imgEl=document.getElementById('dImg');
-  if(v._img){imgEl.src=IMG_PREFIX+v._img;imgEl.style.display='block'}else{imgEl.style.display='none'}
+  imgEl.style.display='none';
+  if(v._img){imgEl.src='';imgEl.src=IMG_PREFIX+v._img;imgEl.onload=function(){imgEl.style.display='block'}}else{imgEl.style.display='none'}
   var h='<div class="detail-top"><div class="detail-name">'+esc(v.name)+'</div><div class="detail-nature" style="background:'+p+'">'+v.nature+'性</div><div class="detail-taste">味'+v.taste+'</div></div>';
   h+='<div class="detail-section"><h3>📋 基本信息</h3>';
   [['归经',v.meridian],['功效',v.effect],['主治',v.indications],['禁忌',v.contra],['建议食法',v.usage]].forEach(function(f){h+='<div class="info-row"><span class="label">'+f[0]+'</span><span class="value">'+esc(f[1])+'</span></div>'});
