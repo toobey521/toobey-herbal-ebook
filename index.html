@@ -37,11 +37,11 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC
 .card-nature{font-size:9px;font-weight:600;color:#fff;padding:0 8px;border-radius:8px;display:inline-block;line-height:16px;margin-bottom:3px;box-shadow:0 0 8px rgba(255,255,255,.08)}
 .card-effect{font-size:10px;color:#94a3b8;line-height:1.35;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:left;padding:0 2px}
 .card[data-nature]{transition:transform .25s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease}
-.card[data-nature=cold]:hover{box-shadow:var(--glow-cold),0 8px 25px rgba(0,0,0,.4)}
-.card[data-nature=cool]:hover{box-shadow:var(--glow-cool),0 8px 25px rgba(0,0,0,.4)}
-.card[data-nature=neutral]:hover{box-shadow:var(--glow-neutral),0 8px 25px rgba(0,0,0,.4)}
-.card[data-nature=warm]:hover{box-shadow:var(--glow-warm),0 8px 25px rgba(0,0,0,.4)}
-.card[data-nature=hot]:hover{box-shadow:var(--glow-hot),0 8px 25px rgba(0,0,0,.4)}
+.card[data-nature=cold]:hover,.card[data-nature=cold]:active{box-shadow:var(--glow-cold),0 8px 25px rgba(0,0,0,.4)}
+.card[data-nature=cool]:hover,.card[data-nature=cool]:active{box-shadow:var(--glow-cool),0 8px 25px rgba(0,0,0,.4)}
+.card[data-nature=neutral]:hover,.card[data-nature=neutral]:active{box-shadow:var(--glow-neutral),0 8px 25px rgba(0,0,0,.4)}
+.card[data-nature=warm]:hover,.card[data-nature=warm]:active{box-shadow:var(--glow-warm),0 8px 25px rgba(0,0,0,.4)}
+.card[data-nature=hot]:hover,.card[data-nature=hot]:active{box-shadow:var(--glow-hot),0 8px 25px rgba(0,0,0,.4)}
 .empty{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
 .detail-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.65);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .detail-panel{position:fixed;bottom:0;left:0;right:0;max-height:90vh;overflow-y:auto;background:rgba(20,24,38,.95);border-radius:16px 16px 0 0;z-index:210;padding:0;transform:translateY(100%);transition:transform .35s cubic-bezier(.34,1.56,.64,1);box-shadow:0 -4px 30px rgba(0,0,0,.5);max-width:480px;margin:0 auto;border:1px solid rgba(255,255,255,.06);border-bottom:0}
