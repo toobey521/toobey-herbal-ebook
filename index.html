@@ -6,7 +6,7 @@
 <title>Toobey本草食蔬</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
-:root{--cold:#3b82f6;--cool:#60a5fa;--neutral:#22c55e;--warm:#f59e0b;--hot:#ef4444;--bg:#f5f0eb;--card:#fff;--text:#1e293b;--muted:#64748b;--radius:12px;--shadow:0 2px 8px rgba(0,0,0,.08)}
+:root{--cold:#3b82f6;--cool:#60a5fa;--neutral:#22c55e;--warm:#f59e0b;--hot:#ef4444;--bg:#f5f0eb;--card:#fff;--text:#1e293b;--muted:#64748b;--radius:10px;--shadow:0 1px 4px rgba(0,0,0,.08)}
 body{font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC",sans-serif;background:var(--bg);color:var(--text);-webkit-tap-highlight-color:transparent}
 .header{background:linear-gradient(135deg,#1e293b,#334155);color:#fff;padding:16px 16px 12px;position:sticky;top:0;z-index:100}
 .header h1{font-size:18px;font-weight:700;letter-spacing:1px}
@@ -23,29 +23,26 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC
 .tab.neutral.active{background:var(--neutral)}.tab.warm.active{background:var(--warm)}.tab.hot.active{background:var(--hot)}
 .tab .count{font-size:10px;opacity:.7;margin-left:3px}
 .list{padding:6px 12px 80px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s}
+.card{background:var(--card);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);cursor:pointer;transition:transform .15s;position:relative}
 .card:active{transform:scale(.96)}
-.card-img{width:100%;height:110px;object-fit:cover;display:block;background:#e2e8f0}
-.card-img-placeholder{width:100%;height:110px;display:flex;align-items:center;justify-content:center;font-size:36px}
-.card.cold .card-img-placeholder{background:#eff6ff;color:var(--cold)}
-.card.cool .card-img-placeholder{background:#f0f9ff;color:var(--cool)}
-.card.neutral .card-img-placeholder{background:#f0fdf4;color:var(--neutral)}
-.card.warm .card-img-placeholder{background:#fffbeb;color:var(--warm)}
-.card.hot .card-img-placeholder{background:#fef2f2;color:var(--hot)}
-.card-body{padding:8px 10px 10px}
-.card-name{font-size:14px;font-weight:700}
-.card-tags{display:flex;gap:4px;margin-top:4px}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px}
+.card.cold::before{background:var(--cold)}.card.cool::before{background:var(--cool)}
+.card.neutral::before{background:var(--neutral)}.card.warm::before{background:var(--warm)}.card.hot::before{background:var(--hot)}
+.card-body{padding:12px 12px 10px}
+.card-top{display:flex;align-items:center;gap:8px;margin-bottom:4px}
+.card-emoji{font-size:22px;line-height:1}
+.card-name{font-size:14px;font-weight:700;flex:1}
+.card-tags{display:flex;gap:4px}
 .tag{font-size:10px;padding:2px 6px;border-radius:4px;color:#fff;font-weight:600}
 .tag.cold{background:var(--cold)}.tag.cool{background:var(--cool)}
 .tag.neutral{background:var(--neutral)}.tag.warm{background:var(--warm)}.tag.hot{background:var(--hot)}
-.card-effect{font-size:11px;color:var(--muted);margin-top:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card-effect{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .empty{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
 .detail-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.5)}
 .detail-panel{position:fixed;bottom:0;left:0;right:0;max-height:85vh;overflow-y:auto;background:var(--card);border-radius:16px 16px 0 0;z-index:210;padding:0;transform:translateY(100%);transition:transform .35s ease;box-shadow:0 -4px 24px rgba(0,0,0,.2)}
 .detail-panel.open{transform:translateY(0)}
 .detail-handle{width:40px;height:4px;background:#cbd5e1;border-radius:2px;margin:10px auto}
-.detail-img{width:100%;max-height:220px;object-fit:cover;background:#e2e8f0}
-.detail-icon{text-align:center;font-size:48px;padding:12px 0 4px}
+.detail-img{width:100%;max-height:220px;object-fit:cover;display:block;background:#e2e8f0}
 .detail-content{padding:0 16px 24px}
 .detail-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .detail-name{font-size:20px;font-weight:700}
@@ -88,8 +85,7 @@ function render(){
   var h='';
   for(var i=0;i<items.length;i++){
     var v=items[i],c=C[v.nature],e=E[v.nature];
-    var imgHtml = v._img ? '<img class="card-img" src="'+IMG_PREFIX+v._img+'" alt="'+esc(v.name)+'" onerror="this.outerHTML=\'<div class=card-img-placeholder>'+e+'</div>\'">' : '<div class="card-img-placeholder">'+e+'</div>';
-    h+='<div class="card '+c+'" onclick="show('+v.idx+')">'+imgHtml+'<div class="card-body"><div class="card-name">'+esc(v.name)+'</div><div class="card-tags"><span class="tag '+c+'">'+v.nature+'性</span><span class="tag '+c+'" style="opacity:.8">味'+v.taste+'</span></div><div class="card-effect">'+esc(v.effect)+'</div></div></div>';
+    h+='<div class="card '+c+'" onclick="show('+v.idx+')"><div class="card-body"><div class="card-top"><span class="card-emoji">'+e+'</span><span class="card-name">'+esc(v.name)+'</span><span class="tag '+c+'">'+v.nature+'性</span></div><span class="tag '+c+'" style="font-size:10px;opacity:.7;margin-right:4px">味'+v.taste+'</span><div class="card-effect">'+esc(v.effect)+'</div></div></div>';
   }
   document.getElementById('list').innerHTML = h||'<div class="empty">😅 未找到匹配的蔬菜</div>';
   tabRender();
@@ -104,7 +100,7 @@ function tabRender(){
   }
   document.getElementById('tabs').innerHTML=h;
 }
-function sw(n){cat=n;q='';document.getElementById('q').value='';render()}
+function sw(n){cat=n.replace('性','');q='';document.getElementById('q').value='';render()}
 function search(v){q=v.trim();cat='全部';render()}
 function show(i){
   var v=D[i],c=C[v.nature],p=P[v.nature];
