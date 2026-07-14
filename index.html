@@ -23,16 +23,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Microsoft YaHei","PingFang SC
 .tab.cold.active{background:var(--cold)}.tab.cool.active{background:var(--cool)}
 .tab.neutral.active{background:var(--neutral)}.tab.warm.active{background:var(--warm)}.tab.hot.active{background:var(--hot)}
 .tab .count{font-size:10px;opacity:.6;margin-left:2px}
-.list{padding:6px 10px 80px;display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.card{background:var(--card);border-radius:var(--radius);cursor:pointer;transition:transform .15s;position:relative;padding-left:5px;box-shadow:var(--shadow);overflow:hidden;text-align:center}
+.list{padding:6px 10px 80px;display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px}
+.card{background:var(--card);border-radius:var(--radius);cursor:pointer;transition:transform .15s;position:relative;padding-top:4px;box-shadow:var(--shadow);overflow:hidden;text-align:center}
 .card:active{transform:scale(.96)}
-.card-badge{position:absolute;left:0;top:0;bottom:0;width:5px;border-radius:var(--radius) 0 0 var(--radius)}
-.card-body{padding:14px 8px 12px}
-.card-emoji{font-size:32px;display:block;margin-bottom:6px}
-.card-name{font-size:14px;font-weight:700;display:block;margin-bottom:4px}
-.card-meta{font-size:11px;color:var(--muted);margin-bottom:6px}
-.card-nature{font-size:10px;font-weight:600;color:#fff;padding:1px 10px;border-radius:9px;display:inline-block;line-height:18px;margin-bottom:6px}
-.card-effect{font-size:11px;color:#64748b;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:left;padding:0 2px}
+.card-badge{position:absolute;top:0;left:0;right:0;height:4px;border-radius:var(--radius) var(--radius) 0 0}
+.card-body{padding:12px 6px 10px}
+.card-emoji{font-size:28px;display:block;margin-bottom:4px}
+.card-name{font-size:12px;font-weight:700;display:block;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.card-meta{font-size:10px;color:var(--muted);margin-bottom:4px}
+.card-nature{font-size:9px;font-weight:600;color:#fff;padding:0 8px;border-radius:8px;display:inline-block;line-height:16px;margin-bottom:3px}
+.card-effect{font-size:10px;color:#64748b;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-align:left;padding:0 2px}
 .empty{grid-column:1/-1;text-align:center;padding:40px 20px;color:var(--muted);font-size:14px}
 .detail-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(0,0,0,.4)}
 .detail-panel{position:fixed;bottom:0;left:0;right:0;max-height:90vh;overflow-y:auto;background:var(--card);border-radius:14px 14px 0 0;z-index:210;padding:0;transform:translateY(100%);transition:transform .3s ease;box-shadow:0 -4px 20px rgba(0,0,0,.15);max-width:480px;margin:0 auto}
